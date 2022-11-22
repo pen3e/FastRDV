@@ -162,6 +162,16 @@
             $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
             return $rows; 
         }
+        // Search patient by id
+          function search_p_byid($db_info,$id_patient)
+          {
+              $sql = ("SELECT * FROM patient WHERE id_patient = :id_patient");
+              $query = $db_info -> prepare($sql);
+              $query -> bindValue(':id_patient',$id_patient);
+              $query -> execute();
+              $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
+              return $rows;
+          }
         // search by nom patient
         function search_p($db_info,$nom_patient)
         {
@@ -301,6 +311,35 @@
             $query -> execute();
 
             return $query;
+        }
+
+        // send mail to patient
+        function send_bymail ($email_p,$subject,$message)
+        {
+            $to = $email_p;
+            // *** Subject Email ***
+            $subject = $subject;
+            $signature = "</br></br><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr><td><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr><td width='150' style='vertical-align: middle;'><span class='template3__ImageContainer-sc-vj949k-0 iAZHDN' style='margin-right: 20px; display: block;'><img src='https://cdn-icons-png.flaticon.com/512/4974/4974208.png' role='presentation' width='130' class='image__StyledImage-sc-hupvqm-0 eLouvR' style='max-width: 130px;'></span></td><td style='vertical-align: middle;'><h2 color='#000000' class='name__NameContainer-sc-1m457h3-0 jCjfGD' style='margin: 0px; font-size: 18px; color: rgb(0, 0, 0); font-weight: 600;'><span>Admin</span><span>&nbsp;</span><span>FastRdv</span></h2><p color='#000000' font-size='medium' class='job-title__Container-sc-1hmtp73-0 ibpiyI' style='margin: 0px; color: rgb(0, 0, 0); font-size: 14px; line-height: 22px;'><span>Réceptionniste.</span></p><p color='#000000' font-size='medium' class='company-details__CompanyContainer-sc-j5pyy8-0 haLCeu' style='margin: 0px; font-weight: 500; color: rgb(0, 0, 0); font-size: 14px; line-height: 22px;'><span>CDDS ALEM ABDERREZAK-Alger.</span></p></td><td width='30'><div style='width: 30px;'></div></td><td color='#f2547d' direction='vertical' width='1' height='auto' class='color-divider__Divider-sc-1h38qjv-0 dVPycS' style='width: 1px; border-bottom: none; border-left: 1px solid rgb(242, 84, 125);'></td><td width='30'><div style='width: 30px;'></div></td><td style='vertical-align: middle;'><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr height='25' style='vertical-align: middle;'><td width='30' style='vertical-align: middle;'><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr><td style='vertical-align: bottom;'><span color='#f2547d' width='11' class='contact-info__IconWrapper-sc-mmkjr6-1 eOlNoC' style='display: inline-block; background-color: rgb(242, 84, 125);'><img src='https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/phone-icon-2x.png' color='#f2547d' alt='mobilePhone' width='13' class='contact-info__ContactLabelIcon-sc-mmkjr6-0 glcxte' style='display: block; background-color: rgb(242, 84, 125);'></span></td></tr></tbody></table></td><td style='padding: 0px; color: rgb(0, 0, 0);'><a href='tel:0 23 46 92 02' color='#000000' class='contact-info__ExternalLink-sc-mmkjr6-2 dwaWtg' style='text-decoration: none; color: rgb(0, 0, 0); font-size: 12px;'><span>0 23 46 92 02</span></a></td></tr><tr height='25' style='vertical-align: middle;'><td width='30' style='vertical-align: middle;'><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr><td style='vertical-align: bottom;'><span color='#f2547d' width='11' class='contact-info__IconWrapper-sc-mmkjr6-1 eOlNoC' style='display: inline-block; background-color: rgb(242, 84, 125);'><img src='https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/email-icon-2x.png' color='#f2547d' alt='emailAddress' width='13' class='contact-info__ContactLabelIcon-sc-mmkjr6-0 glcxte' style='display: block; background-color: rgb(242, 84, 125);'></span></td></tr></tbody></table></td><td style='padding: 0px;'><a href='mailto:fastrdv.root@gmail.com' color='#000000' class='contact-info__ExternalLink-sc-mmkjr6-2 dwaWtg' style='text-decoration: none; color: rgb(0, 0, 0); font-size: 12px;'><span>fastrdv.root@gmail.com</span></a></td></tr><tr height='25' style='vertical-align: middle;'><td width='30' style='vertical-align: middle;'><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr><td style='vertical-align: bottom;'><span color='#f2547d' width='11' class='contact-info__IconWrapper-sc-mmkjr6-1 eOlNoC' style='display: inline-block; background-color: rgb(242, 84, 125);'><img src='https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/link-icon-2x.png' color='#f2547d' alt='website' width='13' class='contact-info__ContactLabelIcon-sc-mmkjr6-0 glcxte' style='display: block; background-color: rgb(242, 84, 125);'></span></td></tr></tbody></table></td><td style='padding: 0px;'><a href='//www.fastrdv-cdds.dz' color='#000000' class='contact-info__ExternalLink-sc-mmkjr6-2 dwaWtg' style='text-decoration: none; color: rgb(0, 0, 0); font-size: 12px;'><span>www.fastrdv-cdds.dz</span></a></td></tr><tr height='25' style='vertical-align: middle;'><td width='30' style='vertical-align: middle;'><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr><td style='vertical-align: bottom;'><span color='#f2547d' width='11' class='contact-info__IconWrapper-sc-mmkjr6-1 eOlNoC' style='display: inline-block; background-color: rgb(242, 84, 125);'><img src='https://cdn2.hubspot.net/hubfs/53/tools/email-signature-generator/icons/address-icon-2x.png' color='#f2547d' alt='address' width='13' class='contact-info__ContactLabelIcon-sc-mmkjr6-0 glcxte' style='display: block; background-color: rgb(242, 84, 125);'></span></td></tr></tbody></table></td><td style='padding: 0px;'><span color='#000000' class='contact-info__Address-sc-mmkjr6-3 ikFVIq' style='font-size: 12px; color: rgb(0, 0, 0);'><span>CDDS Abderrezak Allem Boulevard des Martyrs.</span></span></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='width: 100%; vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr><td height='30'></td></tr><tr><td color='#f2547d' direction='horizontal' width='auto' height='1' class='color-divider__Divider-sc-1h38qjv-0 dVPycS' style='width: 100%; border-bottom: 1px solid rgb(242, 84, 125); border-left: none; display: block;'></td></tr><tr><td height='30'></td></tr></tbody></table></td></tr><tr><td><table cellpadding='0' cellspacing='0' class='table__StyledTable-sc-1avdl6r-0 iasblw' style='width: 100%; vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Arial;'><tbody><tr><td style='vertical-align: top;'></td></tr></tbody>";
+            // *** Content Email ***
+            $content = ("<h1 style='color: #191970;'>$message</h1>
+            <hr style='border-top: 1px ;'>
+            $signature");
+            //
+            //*** Head Email ***
+            $headers = "From: Your-Email\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/html\r\n";
+
+            //*** Show the result... ***
+                if (mail($to, $subject, $content, $headers))
+                {
+                     $log= "Mail envoyer";
+                } 
+                else 
+                {
+                    $log= "Echec de l'envoi";
+                }
+            return $log;
         }
 
     }

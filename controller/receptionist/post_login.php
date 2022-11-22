@@ -27,7 +27,7 @@
             
             // Create a variable _SESSION
             $_SESSION["admin"]="true";
-            $_SESSION["id_user"]=$$CheckUser[0]["id_user"];
+            $_SESSION["id_user"]=$CheckUser[0]["id_user"];
             $_SESSION["nom_user"]=$CheckUser[0]["nom_user"];
             $_SESSION["prenom_user"]=$CheckUser[0]["prenom_user"];
             

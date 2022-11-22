@@ -79,25 +79,33 @@
 
             </div>
             <div class="col-9">
-            <div class="card text-center w-4" >
+            <div class="card w-4" >
+            <h5 class="card-header"><i class="fa fa-envelope" aria-hidden="true"></i></h5>
                     <div class="card-body">
-                            
-                    <ul class="list-group">
-                        <?php 
-                        if (!is_null($result)){
-                            foreach ($result as $key =>$value){
-                                echo "<li class='list-group-item'>";
-                                echo "<i class='fa fa-user-circle' aria-hidden='true'></i> $value[nom_patient] $value[prenom_patient]  ";
-                                echo "<i class='fa fa-calendar' aria-hidden='true'></i>";
-                                echo "<a href='connect_p.php?id_patient=" . $value["id_patient"] . "&nom_patient=" . $value["nom_patient"] . "&prenom_patient=" . $value["prenom_patient"] . "' class='text-danger'> $value[date_rdv] <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </a>";
-                                echo "<a href='send_p.php?id_patient=" .$value["id_patient"]."' class='text-info'><i class='fa fa-envelope' aria-hidden='true'></i> </a>";
-                                echo "<a href='' class='text-success'><i class='fa fa-phone-square' aria-hidden='true'></i> $value[tel_patient] </a>";
-                                echo "<i class='fa fa-building' aria-hidden='true'></i> $value[specialite]";
-                                echo "</li>";
-                            }
-                        }
-                        ?>
-                    </ul>
+                        <form action="send_p.php" method="post">
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">@ Destinataire </label>
+                                <div class="col-sm-5">
+                                <?php
+                                echo "<input type='email' class='form-control' id='inputEmail3' name='email_p' value='$mail'>";
+                                ?>
+                                </div>
+                                
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputSubject" class="col-sm-2 col-form-label">@ Objet</label>
+                                <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputSubject" value="CC: " placeholder="" name="subject">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1"></label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button name="sendmail" class="btn btn-success float-right">Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
