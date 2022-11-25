@@ -41,14 +41,17 @@
                                     foreach ($spec as $key =>$value){
                                         echo"<a class='dropdown-item' href='man_rdv.php?spec=".$value["specialite"]."'> $value[specialite] ";
                                         $spe = $value["specialite"];
-                                        $count_day = $receptionist -> count_rdvbyspec($db_info,$spe);
-                                        $c_d = $count_day[0]["countday"];
-                                        if ($c_d > 0){
-                                            echo "<span class='badge badge-success'>$c_d</span> </a>";
-                                        }else{
-                                            echo "<span class='badge badge-secondary'>$c_d</span> </a>";
-                                        }
+                                        $count_day = $receptionist -> count_rdvbyday($db_info,$spe);
+                                        $count_past = $receptionist -> count_rdvbypast($db_info,$spe);
+                                        $count_futur = $receptionist -> count_rdvbyfutur($db_info,$spe);
+                                        $cd_futur= $count_futur[0]["countfutur"];
+                                        $cd_past= $count_past[0]["countpast"];
+                                        $cd_today= $count_day[0]["countday"];
+                                        echo "<span class='badge badge-warning d-inline'>$cd_today</span>";
+                                        echo " <span class='badge badge-success d-inline'>$cd_futur</span>";
+                                        echo" <span class='badge badge-secondary d-inline'>$cd_past</span>";
                                         
+                                        echo "</a>";
                                     }
                                 }
                                 ?>
@@ -89,7 +92,7 @@
                                 echo "<li class='list-group-item'>";
                                 echo "<i class='fa fa-user-circle' aria-hidden='true'></i> $value[nom_patient] $value[prenom_patient]  ";
                                 echo "<i class='fa fa-calendar' aria-hidden='true'></i>";
-                                echo "<a href='connect_p.php?id_patient=" . $value["id_patient"] . "&nom_patient=" . $value["nom_patient"] . "&prenom_patient=" . $value["prenom_patient"] . "' class='text-danger'> $value[date_rdv] <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </a>";
+                                echo "<a href='man_rdv_edit.php?id_sent=".$value['id_rdv']."' class='text-danger'> $value[date_rdv] <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </a>";
                                 echo "<a href='send_p.php?id_patient=" .$value["id_patient"]."' class='text-info'><i class='fa fa-envelope' aria-hidden='true'></i> </a>";
                                 echo "<a href='' class='text-success'><i class='fa fa-phone-square' aria-hidden='true'></i> $value[tel_patient] </a>";
                                 echo "<i class='fa fa-building' aria-hidden='true'></i> $value[specialite]";

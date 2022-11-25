@@ -83,31 +83,42 @@
             </div>
             <div class="col-9">
             <div class="card w-4" >
-            <h5 class="card-header"><i class="fa fa-envelope" aria-hidden="true"></i></h5>
+            <h5 class="card-header"><i class="fa fa-calendar" aria-hidden="true"></i> Modifier rdv patient</h5>
                     <div class="card-body">
-                        <form action="send_p.php" method="post">
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">@ Destinataire </label>
-                                <div class="col-sm-5">
-                                <?php
-                                echo "<input type='email' class='form-control' id='inputEmail3' name='email_p' value='$mail'>";
-                                ?>
-                                </div>
-                                
+                    <form>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Nom Complet</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail3" value="<?php echo "$nom $prenom"; ?>" name="" placeholder="" disabled>
                             </div>
-                            <div class="form-group row">
-                                <label for="inputSubject" class="col-sm-2 col-form-label">@ Objet</label>
-                                <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputSubject" value="CC: " placeholder="" name="subject">
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail1" class="col-sm-2 col-form-label">Spécialite</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" value="<?php echo $speca;?>" disabled>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1"></label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail2" class="col-sm-2 col-form-label">Date du rdv</label>
+                            <div class="col-sm-10">
+                            <input type="date" class="form-control" value="<?php echo $current_date; ?>" disabled>
                             </div>
-                            <div class="form-group">
-                                <button name="sendmail" class="btn btn-success float-right">Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label for="inputEmail2" class="col-sm-2 col-form-label">Nouvelle date</label>
+                            <div class="col-sm-10">
+                        <form action="man_rdv_edit.php" method="post">
+                            <input type="date" name="newdate" class="form-control" value="">
                             </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Modifier rdv</button>
+                        </form>
+                            <button type="submit" class="btn btn-danger">Annuler rdv</button>
+                            </div>
+                        </div>
                         </form>
                     </div>
                 </div>

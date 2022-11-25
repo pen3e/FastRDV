@@ -275,13 +275,57 @@
               $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
               return $rows; 
           }
+            // all rdv by id
+          function all_rdv_by_id($db_info,$id_rdv)
+          {
+              $sql = ("SELECT * FROM rdv
+                        INNER JOIN patient ON patient.id_patient = rdv.id_patient
+                        INNER JOIN planning ON planning.id_planning = rdv.id_planning
+                        WHERE rdv.id_rdv = :id_rdv");
+  
+              $query = $db_info -> prepare($sql);
+              $query -> bindValue(':id_rdv',$id_rdv);
+              $query -> execute();
+              $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
+              return $rows; 
+          }
           // COUNT RDV BY SPEC
-          function count_rdvbyspec($db_info,$spe)
+          function count_rdvbyfutur($db_info,$spe)
+          {
+              $sql = ("SELECT COUNT(*) AS countfutur FROM rdv
+                        INNER JOIN patient ON patient.id_patient = rdv.id_patient
+                        INNER JOIN planning ON planning.id_planning = rdv.id_planning
+                        WHERE rdv.date_rdv > CURRENT_DATE
+                        AND planning.specialite = :specialite;");
+  
+              $query = $db_info -> prepare($sql);
+              $query -> bindValue(':specialite',$spe);
+              $query -> execute();
+              $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
+              return $rows; 
+          }
+          // COUNT RDV BY SPEC
+          function count_rdvbyday($db_info,$spe)
           {
               $sql = ("SELECT COUNT(*) AS countday FROM rdv
                         INNER JOIN patient ON patient.id_patient = rdv.id_patient
                         INNER JOIN planning ON planning.id_planning = rdv.id_planning
-                        WHERE rdv.date_rdv >= CURRENT_DATE
+                        WHERE rdv.date_rdv = CURRENT_DATE
+                        AND planning.specialite = :specialite;");
+  
+              $query = $db_info -> prepare($sql);
+              $query -> bindValue(':specialite',$spe);
+              $query -> execute();
+              $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
+              return $rows; 
+          }
+          // COUNT RDV BY SPEC
+          function count_rdvbypast($db_info,$spe)
+          {
+              $sql = ("SELECT COUNT(*) AS countpast FROM rdv
+                        INNER JOIN patient ON patient.id_patient = rdv.id_patient
+                        INNER JOIN planning ON planning.id_planning = rdv.id_planning
+                        WHERE rdv.date_rdv < CURRENT_DATE
                         AND planning.specialite = :specialite;");
   
               $query = $db_info -> prepare($sql);
