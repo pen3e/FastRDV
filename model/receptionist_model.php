@@ -232,6 +232,42 @@
               $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
               return $rows; 
           }
+          function all_rdv_day($db_info)
+          {
+              $sql = ("SELECT * FROM rdv
+                        INNER JOIN patient ON patient.id_patient = rdv.id_patient
+                        INNER JOIN planning ON planning.id_planning = rdv.id_planning
+                        WHERE rdv.date_rdv = CURRENT_DATE;");
+  
+              $query = $db_info -> prepare($sql);
+              $query -> execute();
+              $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
+              return $rows; 
+          }
+          function all_rdv_futur($db_info)
+          {
+              $sql = ("SELECT * FROM rdv
+                        INNER JOIN patient ON patient.id_patient = rdv.id_patient
+                        INNER JOIN planning ON planning.id_planning = rdv.id_planning
+                        WHERE rdv.date_rdv > CURRENT_DATE;");
+  
+              $query = $db_info -> prepare($sql);
+              $query -> execute();
+              $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
+              return $rows; 
+          }
+          function all_rdv_past($db_info)
+          {
+              $sql = ("SELECT * FROM rdv
+                        INNER JOIN patient ON patient.id_patient = rdv.id_patient
+                        INNER JOIN planning ON planning.id_planning = rdv.id_planning
+                        WHERE rdv.date_rdv < CURRENT_DATE;");
+  
+              $query = $db_info -> prepare($sql);
+              $query -> execute();
+              $rows = $query -> fetchAll(PDO::FETCH_ASSOC);
+              return $rows; 
+          }
             // all rdv by spec
           function all_rdv_byspec($db_info,$spec)
           {
@@ -384,6 +420,19 @@
                     $log= "Echec de l'envoi";
                 }
             return $log;
+        }
+        // update rdv
+        function update_rdv_by_id($db_info,$id_rdv,$date_rdv)
+        {
+            $sql = ("UPDATE rdv SET
+                    date_rdv = :date_rdv
+                    WHERE id_rdv = :id_rdv");
+            $query = $db_info -> prepare ($sql);
+            $query -> bindValue(':id_rdv',$id_rdv);
+            $query -> bindValue(':date_rdv',$date_rdv);
+            $query -> execute();
+
+            return $query;
         }
 
     }

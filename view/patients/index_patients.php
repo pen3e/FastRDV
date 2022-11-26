@@ -54,7 +54,7 @@
                     </thead>
                     <tbody>
                     <?php
-                    $spec = $patients -> allspec ($db_info);
+                    $spec = $patients -> spec_avaible ($db_info);
                     if (!is_null($spec)){
                         foreach ($spec as $key =>$value){
                             echo"<tr>";

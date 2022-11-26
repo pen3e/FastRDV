@@ -19,7 +19,7 @@
     
             // Launch function to add 
             $rdv = $patients -> rdvbypatient($db_info,$id_patient);
-            $spec = $patients -> spec($db_info);
+            $spec = $patients -> spec_avaible($db_info);
             $rdvid = $patients -> rdvid($db_info,$id_rdv);
 
             $id_rdv = $rdvid[0]["id_rdv"];

@@ -60,7 +60,7 @@
                                     echo"<i class='fa fa-id-card' aria-hidden='true'></i>";
                                 echo"</button>";
                                 echo"<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-                                    echo"<a class='dropdown-item' href='connect_p.php?id_patient=" . $value["id_patient"] . "&nom_patient=" . $value["nom_patient"] . "&prenom_patient=" . $value["prenom_patient"] . "'>";
+                                    echo"<a class='dropdown-item' href='connect_p.php?id_patient=" . $value["id_patient"] . "&nom_patient=" . $value["nom_patient"] . "&prenom_patient=" . $value["prenom_patient"] . "' target='_blank'>";
                                         echo"<i class='fa fa-plug' aria-hidden='true'></i> Connect";
                                     echo"</a>";
                                     echo"<a class='dropdown-item' href='del_p.php?id_patient=" . $value["id_patient"] . "'>";

@@ -71,6 +71,18 @@
 
             return $rows;           
         }
+        // specialité disponibble 
+        function spec_avaible ($db_info)
+        {
+            $sql = ("SELECT DISTINCT specialite FROM planning
+                    WHERE active = '1' AND id_user > 0;");
+            
+            $query = $db_info -> prepare($sql);
+            $query -> execute();
+            $rows = $query -> fetchAll();
+
+            return $rows;           
+        }
         // all specialité
         function allspec ($db_info)
         {

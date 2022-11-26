@@ -12,24 +12,26 @@
 	$patients = new patients();
     $receptionist = new receptionist();
 
-    if(isset($_GET['id_patient'])) {
+    if(isset($_GET['id_user'])) {
 
-        $id_patient = $_GET['id_patient'];
-        $nom_patient = $_GET['nom_patient'];
-        $prenom_patient = $_GET['prenom_patient'];
+        $id_user = $_GET['id_user'];
+        $nom_user = $_GET['nom_user'];
+        $prenom_user = $_GET['prenom_user'];
+        $specialite_user = $_GET['specialite_user'];
 
         // destroy an admin session to connect
         
         //session_destroy();
         
         // Create a variable _SESSION
-        $_SESSION["Checked"]="true";
-        $_SESSION["id_patient"]= $id_patient;
-        $_SESSION["nom_patient"]= $nom_patient;
-        $_SESSION["prenom_patient"]= $prenom_patient;
+        $_SESSION["doctors"]="true";
+        $_SESSION["id_user"]= $id_user;
+        $_SESSION["nom_user"]= $nom_user;
+        $_SESSION["prenom_user"]= $prenom_user;
+        $_SESSION["specialite_user"] = $specialite_user;
                
         
-        header("location:../patients/index_patients.php");
+        header("location:../doctors/index_medecins.php");
         exit();
     }
 

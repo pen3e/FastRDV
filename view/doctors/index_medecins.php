@@ -13,6 +13,11 @@
                         <i class="fa fa-home" aria-hidden="true"></i> Dashboard
                         </button>
                     </a>
+                    <a href="disconnect.php">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="" name="">
+                            <i class="fa fa-lock" aria-hidden="true"></i> Disconnect
+                        </button>
+                    </a>
                     <form action="index_medecins.php" method="post" class="form-inline">
                         <input class="form-control mr-sm-2" name="date" type="date" value="<?php echo $current_day; ?>" placeholder="" aria-label="Search" required>
                         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="searchbyd">
@@ -29,6 +34,21 @@
 
                 <div class="card text-center w-4" >
                     <div class="card-body">
+                            <div class="row">
+                                    <div class="col">
+                                        <span class='badge badge-warning d-inline'>Aujourd'hui : </span>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col">
+                                        <span class='badge badge-succes d-inline'>Prochain : </span>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col">
+                                        <span class='badge badge-warning d-inline'>Passé : </span>
+                                    </div>
+                            </div>
                             
                             <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,12 +56,14 @@
                             </button>
                             <div class="dropdown-menu">
                                 <?php
+                                /*
                                 $spec = $patients -> allspec ($db_info);
                                 if (!is_null($spec)){
                                     foreach ($spec as $key =>$value){
                                         echo"<a class='dropdown-item' href='index_medecins.php?spec=".$value["specialite"]."'>$value[specialite]</a>";
                                     }
                                 }
+                                */
                                 ?>
                             </div>
                             </div>

@@ -31,7 +31,7 @@
 
         // Launch function to fetch
         $rdv = $patients -> rdvbypatient($db_info,$id_patient);
-        $spec = $patients -> spec ($db_info);
+        $spec = $patients -> spec_avaible ($db_info);
         
         // include views
         include("../../view/_layouts/header_rdv.php");

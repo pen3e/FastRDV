@@ -63,7 +63,7 @@
                                     echo"<i class='fa fa-id-card' aria-hidden='true'></i>";
                                 echo"</button>";
                                 echo"<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-                                    echo"<a class='dropdown-item' href='connect_m.php?id_user=" . $value["id_user"] . "&nom_user=" . $value["nom_user"] . "&prenom_user=" . $value["prenom_user"] . "'>";
+                                    echo"<a class='dropdown-item' href='connect_m.php?id_user=" . $value["id_user"] . "&nom_user=" . $value["nom_user"] . "&prenom_user=" . $value["prenom_user"] . "&specialite_user=" . $value["specialite_user"] . "' target='_blank'>";
                                         echo"<i class='fa fa-plug' aria-hidden='true'></i> Connect";
                                     echo"</a>";
                                     echo"<a class='dropdown-item' href='del_m.php?id_user=" . $value["id_user"] . "'>";

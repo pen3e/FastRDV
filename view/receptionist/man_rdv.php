@@ -84,11 +84,28 @@
             <div class="col-9">
             <div class="card text-center w-4" >
                     <div class="card-body">
-                            
+                    <?php
+                    if(!is_null($result)){
+                        foreach ($result as $key =>$value){
+                            echo "<span class='badge badge-primary'> votre recherche :</span>";
+                            echo "<ul class='list-group'>";
+                                echo "<li class='list-group-item'>";
+                                echo "<i class='fa fa-user-circle' aria-hidden='true'></i> $value[nom_patient] $value[prenom_patient]  ";
+                                echo "<i class='fa fa-calendar' aria-hidden='true'></i>";
+                                echo "<a href='man_rdv_edit.php?id_sent=".$value['id_rdv']."' class='text-danger'> $value[date_rdv] <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </a>";
+                                echo "<a href='send_p.php?id_patient=" .$value["id_patient"]."' class='text-info'><i class='fa fa-envelope' aria-hidden='true'></i> </a>";
+                                echo "<a href='' class='text-success'><i class='fa fa-phone-square' aria-hidden='true'></i> $value[tel_patient] </a>";
+                                echo "<i class='fa fa-building' aria-hidden='true'></i> $value[specialite]";
+                                echo "</li>";
+                            echo "</ul>";
+                        }
+                    }
+                    ?>
+                    <span class='badge badge-warning'> Aujourd'hui</span>
                     <ul class="list-group">
                         <?php 
-                        if (!is_null($result)){
-                            foreach ($result as $key =>$value){
+                        if (count($result_day)>0){
+                            foreach ($result_day as $key =>$value){
                                 echo "<li class='list-group-item'>";
                                 echo "<i class='fa fa-user-circle' aria-hidden='true'></i> $value[nom_patient] $value[prenom_patient]  ";
                                 echo "<i class='fa fa-calendar' aria-hidden='true'></i>";
@@ -98,6 +115,46 @@
                                 echo "<i class='fa fa-building' aria-hidden='true'></i> $value[specialite]";
                                 echo "</li>";
                             }
+                        }else{
+                            echo "<li class='list-group-item'> Aucun rdv enregistré pour aujourd'hui ..</li>";
+                        }
+                        ?>
+                    </ul>
+                    <span class='badge badge-success'> Prochain </span>
+                    <ul class="list-group">
+                        <?php 
+                        if (count($result_futur)>0){
+                            foreach ($result_futur as $key =>$value){
+                                echo "<li class='list-group-item'>";
+                                echo "<i class='fa fa-user-circle' aria-hidden='true'></i> $value[nom_patient] $value[prenom_patient]  ";
+                                echo "<i class='fa fa-calendar' aria-hidden='true'></i>";
+                                echo "<a href='man_rdv_edit.php?id_sent=".$value['id_rdv']."' class='text-danger'> $value[date_rdv] <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </a>";
+                                echo "<a href='send_p.php?id_patient=" .$value["id_patient"]."' class='text-info'><i class='fa fa-envelope' aria-hidden='true'></i> </a>";
+                                echo "<a href='' class='text-success'><i class='fa fa-phone-square' aria-hidden='true'></i> $value[tel_patient] </a>";
+                                echo "<i class='fa fa-building' aria-hidden='true'></i> $value[specialite]";
+                                echo "</li>";
+                            }
+                        }else{
+                            echo "<li class='list-group-item'> Aucun rdv enregistré au futur ..</li>";
+                        }
+                        ?>
+                    </ul>
+                    <span class='badge badge-secondary'>Anciens rdv </span>
+                    <ul class="list-group">
+                        <?php 
+                        if (count($result_past)>0){
+                            foreach ($result_past as $key =>$value){
+                                echo "<li class='list-group-item'>";
+                                echo "<i class='fa fa-user-circle' aria-hidden='true'></i> $value[nom_patient] $value[prenom_patient]  ";
+                                echo "<i class='fa fa-calendar' aria-hidden='true'></i>";
+                                echo "<a href='man_rdv_edit.php?id_sent=".$value['id_rdv']."' class='text-danger'> $value[date_rdv] <i class='fa fa-pencil-square-o' aria-hidden='true'></i> </a>";
+                                echo "<a href='send_p.php?id_patient=" .$value["id_patient"]."' class='text-info'><i class='fa fa-envelope' aria-hidden='true'></i> </a>";
+                                echo "<a href='' class='text-success'><i class='fa fa-phone-square' aria-hidden='true'></i> $value[tel_patient] </a>";
+                                echo "<i class='fa fa-building' aria-hidden='true'></i> $value[specialite]";
+                                echo "</li>";
+                            }
+                        }else{
+                            echo "<li class='list-group-item'> Aucun rdv enregistré au futur ..</li>";
                         }
                         ?>
                     </ul>

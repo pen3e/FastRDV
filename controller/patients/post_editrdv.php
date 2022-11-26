@@ -41,8 +41,8 @@
             {
                 $message_erreur1 = "<i class='fa fa-exclamation-circle' aria-hidden='true'></i> ";
                 $message_erreur2 = " Le medécin ne sera pas disponible * ";
-                $message_erreur3 = " <i class='fa fa-calendar' aria-hidden='true'></i> ";
-                $message_erreur4 = " Consulter le planning ";
+                $message_erreur3 = " <a href='index_patients.php'><i class='fa fa-calendar' aria-hidden='true'></i> ";
+                $message_erreur4 = " Consulter le planning <a> ";    
                 $current_day = date("Y-m-d");
                 
                 // Launch function to fetch

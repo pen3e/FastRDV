@@ -85,7 +85,7 @@
             <div class="card w-4" >
             <h5 class="card-header"><i class="fa fa-calendar" aria-hidden="true"></i> Modifier rdv patient</h5>
                     <div class="card-body">
-                    <form>
+                    
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Nom Complet</label>
                             <div class="col-sm-10">
@@ -105,21 +105,27 @@
                             </div>
                         </div>
                         <hr>
+                        <p> Email of patient : <?php echo $mail; ?></p>
+                        <hr>
+                        <form action="man_rdv_edit.php" method="post">
                         <div class="form-group row">
                             <label for="inputEmail2" class="col-sm-2 col-form-label">Nouvelle date</label>
-                            <div class="col-sm-10">
-                        <form action="man_rdv_edit.php" method="post">
-                            <input type="date" name="newdate" class="form-control" value="">
+                            <div class="col-sm-6">
+                            <input type="text" value="<?php echo $mail; ?>" name="mail" hidden>
+                            <input type="text" name="id_rdv" value="<?php echo "$id_rdv"; ?>" hidden>
+                            <input type="date" name="date" class="form-control">
+                            </div>
+                            <div class="col-sm-2">
+                                <button name="update" type="submit" class="btn btn-warning"> Modifier rdv </button>
+                        </form>
+                            </div>
+                            <div class="col-sm-2">
+                                <?php
+                                echo "<a href='man_rdv_edit.php?id_del=".$id_rdv."' class='btn btn-danger'> Annuler rdv </a>";
+                                ?>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Modifier rdv</button>
-                        </form>
-                            <button type="submit" class="btn btn-danger">Annuler rdv</button>
-                            </div>
-                        </div>
-                        </form>
+                        
                     </div>
                 </div>
             </div>
